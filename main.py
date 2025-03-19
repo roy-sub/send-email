@@ -88,6 +88,3 @@ async def send_email_endpoint(email_data: EmailRequest):
 @app.get("/")
 async def root():
     return {"message": "Email Sender API is running. Use /send-email/ endpoint to send emails."}
-
-if __name__ == '__main__':
-    app.run()
