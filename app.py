@@ -4,10 +4,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import Dict
-from mangum import Mangum
+# from mangum import Mangum
 
 app = FastAPI(title="Email Sender API")
-handler = Mangum(app)
+# handler = Mangum(app)
 
 class EmailRequest(BaseModel):
     sender_email: str
