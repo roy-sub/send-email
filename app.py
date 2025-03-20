@@ -3,10 +3,10 @@ from pydantic import BaseModel, EmailStr
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from typing import Dict
+from typing import Dict, Any
 # from mangum import Mangum
 
-app = FastAPI(title="Email Sender API")
+app = FastAPI()
 # handler = Mangum(app)
 
 class EmailRequest(BaseModel):
@@ -36,7 +36,7 @@ def send_email(
     password: str,
     smtp_server: str = "smtp.gmail.com",
     smtp_port: int = 587
-) -> Dict[str, any]:
+) -> Dict[str, Any]:  # Use Any instead of any
 
     try:
         # Create a multipart message
@@ -65,7 +65,7 @@ def send_email(
     except Exception as e:
         return {"success": False, "message": f"Failed to send email: {str(e)}"}
 
-@app.post("/send-email/", response_model=Dict[str, any])
+@app.post("/send-email/", response_model=Dict[str, Any])  # Use Any instead of any
 async def send_email_endpoint(email_data: EmailRequest):
     # Additional validation beyond Pydantic's EmailStr
     if not is_valid_email(email_data.receiver_email):
